@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('blocks/header.ejs') -%>
+
+    <form action="/update-user" method="post">
+        <input type="text" value="<%= result[0]['Name'] %>" name="Name"><br>
+        <input type="text" value="<%= result[0]['Surname'] %>" name="Surname"><br>
+        <input type="number" value="<%= result[0]['Age'] %>" name="Age"><br>
+        <input type="hidden" value="<%= result[0]['id'] %>" name="id"><br>
+        <button type="submit">Изменить</button>
+    </form>
+</body>
+</html>

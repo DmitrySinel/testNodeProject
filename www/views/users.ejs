@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('blocks/header.ejs') -%>
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        <% for(let i = 0; i < result.length; i++){ %>
+        <tr>
+            <td><a id="refTable" href="/user/<%= result[i]['id'] %>"><%= result[i]['id'] %></a></td>
+            <td><%= result[i]['Name'] %></td>
+            <td><%= result[i]['Surname'] %></td>
+            <td><%= result[i]['Age'] %></td>
+            <td><a id="refTable" href="/user/delete/<%= result[i]['id'] %>">Delete</a></td>
+            <td><a id="refTable" href="/user/update/<%= result[i]['id'] %>">Update</a></td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>
