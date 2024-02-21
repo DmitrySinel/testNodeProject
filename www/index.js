@@ -28,11 +28,6 @@ function openConnection(){
     })
 }
 
-
-// conn.query(query, (err, result, field) => { //result
-//     console.log(err)
-//     console.log(result[0]['Name'])
-// })
 function endConnection(){
     conn.end(err => { //end connect
         if(err) {
@@ -123,8 +118,17 @@ app.get('/generate/:id', async (req, res) => {
     res.redirect('/')
 });
 
+app.get('/hospitalMap', (req, res) => {
+    let pacient = [
+        ['James', 1, 'pacient'],
+        ['Bob', 1, 'doctor'],
+        ['Alex', 2, 'pacient']
+    ]
+    res.render('hospitalMap', {pacient: pacient})
+})
+
 //api
-app.get("/api/user/:id", (req, res) => {
+app.get("/api/v1/user/:id", (req, res) => {
     let id = req.params.id
     let query = "SELECT * FROM `User` WHERE id = " + id //query
     conn.query(query, (err, result, field) => { //result
