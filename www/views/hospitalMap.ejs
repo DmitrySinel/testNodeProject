@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('blocks/header.ejs') -%>
+    
+    <div class="bgimg">
+        <div id="smallRoom">
+            <% for(let i = 0; i < pacient.length; i++){ 
+                if (pacient[i][1] == 1) {%>
+                <div id="<%= pacient[i][2] == 'doctor' ? 'doctor' : 'pacient' %>"></div>
+                <% } %>
+            <% } %>
+        </div>
+        <div id="smallRoom">
+            <% for(let i = 0; i < pacient.length; i++){ 
+                if (pacient[i][1] == 2) {%>
+                <div id="pacient"></div>
+                <% } %>
+            <% } %>
+        </div>
+        <div id="mediumRoom"></div>
+        <div id="smallRoom"></div>
+        <div id="bigSquareRoom"></div>
+        <div id="smallRoom"></div>
+        <div id="smallRoom"></div>
+        <div id="smallSquareRoom"></div>
+        <div id="space"></div>
+        <div id="mediumRoom"></div>
+        <div id="smallRoom"></div>
+        <div id="smallRoom"></div>
+        <div id="smallMediumRoom"></div>
+        <div id="mediumRoom"></div>
+        <div id="mediumRoom"></div>
+        <div id="corridor"></div>
+        <div id="mediumRoom"></div>
+        <div id="bigSquareRoom"></div>
+    </div>
+</body>
+</html>
