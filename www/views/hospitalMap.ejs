@@ -12,19 +12,25 @@
     <div class="bgimg">
         <div id="smallRoom">
             <% for(let i = 0; i < pacient.length; i++){ 
-                if (pacient[i][1] == 1) {%>
-                <div id="<%= pacient[i][2] == 'doctor' ? 'doctor' : 'pacient' %>"></div>
+                if (pacient[i][1] == 'Стерилизационная') {%>
+                <div id="<%= pacient[i][2] == 'doctor' ? 'doctor' : 'pacient' %>"><a id="pacientRef" href="http://localhost:3000/user/<%= pacient[i][0] %>"><%= pacient[i][0] %></a></div>
                 <% } %>
             <% } %>
         </div>
         <div id="smallRoom">
             <% for(let i = 0; i < pacient.length; i++){ 
-                if (pacient[i][1] == 2) {%>
-                <div id="pacient"></div>
+                if (pacient[i][1] == 'Архив') {%>
+                    <div id="<%= pacient[i][2] == 'doctor' ? 'doctor' : 'pacient' %>"><a id="pacientRef" href="http://localhost:3000/user/<%= pacient[i][0] %>"><%= pacient[i][0] %></a></div>
                 <% } %>
             <% } %>
         </div>
-        <div id="mediumRoom"></div>
+        <div id="mediumRoom">
+            <% for(let i = 0; i < pacient.length; i++){ 
+                if (pacient[i][1] == 'Главный врач') {%>
+                    <div id="<%= pacient[i][2] == 'doctor' ? 'doctor' : 'pacient' %>"><a id="pacientRef" href="http://localhost:3000/user/<%= pacient[i][0] %>"><%= pacient[i][0] %></a></div>
+                <% } %>
+            <% } %>
+        </div>
         <div id="smallRoom"></div>
         <div id="bigSquareRoom"></div>
         <div id="smallRoom"></div>
@@ -41,5 +47,8 @@
         <div id="mediumRoom"></div>
         <div id="bigSquareRoom"></div>
     </div>
+    <div id="mapLegend"></div>
+    <div id="doctor"></div><span>Врач</р>
+    <div id="pacient"></div><span>Пациент</р>
 </body>
 </html>

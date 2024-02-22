@@ -119,12 +119,20 @@ app.get('/generate/:id', async (req, res) => {
 });
 
 app.get('/hospitalMap', (req, res) => {
-    let pacient = [
-        ['James', 1, 'pacient'],
-        ['Bob', 1, 'doctor'],
-        ['Alex', 2, 'pacient']
+    // const result = fetch('http://localhost:3001/api/v1/hospitalMapApi')
+    //     .then((response) => response.text())
+    //     .then((body) => {
+    //         res.render('hospitalMap', {pacient: JSON.parse(body)})
+    //     }); 
+    let data = [
+        ['1', 'Стерилизационная', 'pacient'],
+        ['2', 'Стерилизационная', 'doctor'],
+        ['3', 'Архив', 'pacient'],
+        ['4', 'Главный врач', 'doctor'],
+        ['9', 'Главный врач', 'doctor'],
+        ['10', 'Главный врач', 'pacient']
     ]
-    res.render('hospitalMap', {pacient: pacient})
+    res.render('hospitalMap', {pacient: data})
 })
 
 //api
