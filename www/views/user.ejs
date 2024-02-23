@@ -9,10 +9,10 @@
 <body>
     <%- include('blocks/header.ejs') -%>
 
-    <span class="infBlock"><%= id %></span>
-    <span class="infBlock"><%= name %></span>
-    <span class="infBlock"><%= surname %></span>
-    <span class="infBlock"><%= age %></span>
-    <img src="<%='/qrcode/User' + id + 'qrcode.png' %>" />
+    <span class="infBlock">ID: <%= id %></span>
+    <span class="infBlock">Name: <%= name %></span>
+    <span class="infBlock">Surname: <%= surname %></span>
+    <span class="infBlock">Age: <%= age %></span>
+    <img class="infBlock" src="<%='/qrcode/User' + id + 'qrcode.png' %>" />
 </body>
 </html>

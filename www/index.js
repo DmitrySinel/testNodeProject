@@ -96,8 +96,17 @@ app.post('/check-user', (req, res) => {
 app.post('/create-user', (req, res) => {
     let query = `INSERT INTO User (Name, Surname, Age) VALUES ('${req.body.name}', '${req.body.surname}', ${req.body.age})`
     conn.query(query, (err, result, field) => {
-        res.redirect('/')
+        query = `SELECT id FROM User WHERE Name = "${req.body.name}" and Surname = "${req.body.surname}"`
+        conn.query(query, (request, resl) => {
+            const url = `http://localhost:3000/user/` + resl[0]['id']
+            if (!url) {
+                return res.status(400).send('URL не указан.');
+            }
+            qrcode.toFile(__dirname + '/public/qrcode/User' + resl[0]['id'] + 'qrcode.png', url);
+            res.redirect('/users')
+        }) 
     })
+
 })
 
 app.post('/update-user', (req, res) => {
@@ -143,6 +152,11 @@ app.get("/api/v1/user/:id", (req, res) => {
             data = {id: id, name: result[0]['Name'], surname: result[0]['Surname'], age: result[0]['Age']}
             res.send(data)
     })
+})
+
+app.get("/api/v1/returnQR/:id", (req, res) => {
+    let id = req.params.id
+    res.redirect('/qrcode/User' + id + 'qrcode.png')
 })
 
 const PORT = 3000
