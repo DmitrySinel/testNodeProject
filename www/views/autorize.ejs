@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('blocks/header.ejs') -%>
+    <% if(role == 1) {%>
+    <div>
+        <span class="infBlock">Name: <%= userInfo['Name'] %></span>
+        <span class="infBlock">Surname: <%= userInfo['Surname'] %></span>
+        <span class="infBlock">Age: <%= userInfo['Age'] %></span>
+    </div>
+    <% } %>
+
+    <% if(role == 0) {%>
+    <form method="post" action="/autorize-user">
+        <input type="text" name="name" placeholder="Имя"><br>
+        <input type="text" name="surname" placeholder="Фамилия"><br>
+        <input type="number" name="age" placeholder="Возраст"><br>
+        <button type="submit">Авторизация</button>
+    </form><br><br>
+    <% } %>
+    
+    <% if(error !== "") {%>
+        <span class="error"><%= error %></span>
+    <% } %>
+
+    <% if(role == 1) {%>
+        <form action="/exit-user" method="post">
+            <button type="submit">Выйти</button>
+        </form>
+    <% } %>
+</body>
+</html>

@@ -18,10 +18,18 @@ a, form {
     margin-left: 15px;
 }
 
-#formSearche {
+#autorize {
     position: absolute;
     right: 0;
+    height: 20px;
+    padding: 2px;
     margin-right: 15px;
+    background-color: rgb(148, 160, 172);
+    border: 1px solid;
+    border-radius: 2px;
+    text-decoration: none;
+    color: black;
+    
 }
 
 h1, p, textarea {
@@ -150,4 +158,10 @@ td {
     height: 1000px;
     display: flex;
     align-content: center;
+ }
+
+ .error {
+   color: rgb(199, 81, 81);
+   margin-top: 15px;
+   margin-left: 15px;
  }

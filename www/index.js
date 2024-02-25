@@ -1,13 +1,30 @@
 const express = require('express')
 const mysql = require('mysql')
 const qrcode = require('qrcode')
+const multer = require('multer')
 
 const app = express()
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+//app.use(multer({dest: "/public/image"}).single("filedata"))
+app.use(multer({dest:"uploads"}).single("filedata"))
 app.use(express.urlencoded({extended: false}))
 
+let sessionRole = 0
+let sessionUser = {}
+let sessionError = ""
+
+app.get('/test', (req, res) => {
+    if(sessionRole == 0)
+        res.status(404).send("<h1>Hello</h1>")
+    else
+        res.status(404).send("<h1>Hello user</h1>")
+})
+
+app.get('/autorize', (req, res) => {
+    res.render('autorize', {role: sessionRole, userInfo: sessionUser, error: sessionError})
+})
 
 //connecting database
 const conn = mysql.createConnection({ //connecting parameters 
@@ -142,6 +159,28 @@ app.get('/hospitalMap', (req, res) => {
         ['10', 'Главный врач', 'pacient']
     ]
     res.render('hospitalMap', {pacient: data})
+})
+
+app.post('/autorize-user', (req, res) => {
+    let query = `SELECT * FROM User WHERE Name = "${req.body.name}" AND Surname = "${req.body.surname}" AND Age = ${req.body.age}`
+    conn.query(query, (err, result, field) => {
+        if (result == ""){
+            sessionError = "Нет такого пользователя"
+            res.redirect('/autorize')
+        }
+        else{
+            sessionError = ""
+            sessionRole = 1
+            sessionUser = {Name: req.body.name, Surname: req.body.surname, Age: req.body.age}
+            res.redirect('/autorize')
+        }
+    })
+
+})
+
+app.post('/exit-user', (req, res) => {
+    sessionRole = 0
+    res.redirect('/autorize')
 })
 
 //api
